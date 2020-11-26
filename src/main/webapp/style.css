@@ -41,3 +41,12 @@ h1 {
     color : white;
     background : green;
 }
+.sort-reset_button:disabled {
+    width : 70px;
+    height : 25px;
+    border : none;
+    font-size : 11pt;
+    margin: 2px 5px;
+    color : white;
+    background : #8FBC8F;
+}
