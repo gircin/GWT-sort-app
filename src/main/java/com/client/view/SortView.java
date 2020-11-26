@@ -39,12 +39,12 @@ public class SortView {
             clearButtons();
             InputView inputView = new InputView();
             inputView.render();
-            enableButtons();
         });
         sortButton.removeStyleName(sortButton.getStyleName());
         resetButton.removeStyleName(resetButton.getStyleName());
         sortButton.addStyleName("sort-reset_button");
         resetButton.addStyleName("sort-reset_button");
+        enableButtons();
     }
 
     /**
