@@ -35,9 +35,11 @@ public class SortView {
         arrLength = Math.min(value, ROWS * COLUMNS);
         sortButton.addClickHandler(new SortHandler());
         resetButton.addClickHandler(event -> {
-            clear();
+            clearTable();
+            clearButtons();
             InputView inputView = new InputView();
             inputView.render();
+            enableButtons();
         });
         sortButton.removeStyleName(sortButton.getStyleName());
         resetButton.removeStyleName(resetButton.getStyleName());
@@ -53,15 +55,15 @@ public class SortView {
      * Если массив ОТСОРТИРОВАН, то должен разворачивать его.
      */
     class SortHandler implements ClickHandler {
-
         @Override
         public void onClick(ClickEvent event) {
+            SortTimer s_timer = new SortTimer();
+            ReverseTimer r_timer = new ReverseTimer();
+            disableButtons();
             if (!isSorted) {
-                SortTimer s_timer = new SortTimer();
-                s_timer.scheduleRepeating(400);
+                    s_timer.scheduleRepeating(400);
             } else {
-                ReverseTimer r_timer = new ReverseTimer();
-                r_timer.scheduleRepeating(400);
+                   r_timer.scheduleRepeating(400);
             }
         }
 
@@ -80,6 +82,7 @@ public class SortView {
                     renderTable();
                 } else {
                     isSorted = true;
+                    enableButtons();
                     cancel();
                 }
             }
@@ -97,7 +100,8 @@ public class SortView {
 
             private void reverseStep() {
                 if (begin >= end) {
-                    this.cancel();
+                    enableButtons();
+                    cancel();
                     return;
                 }
                 int tmp = arr[end];
@@ -116,14 +120,14 @@ public class SortView {
      * Если массива ещё нет, то он вызывает метод генерирования
      * массива generateArr().
      * <p>
-     * После этого метод создаёт на основе массива виджет с
-     * кнопками, используя createGrid(),
-     * после чего обновляет отображение виджетов методом refreshWidgets().
+     * После этого метод создаёт на основе массива виджет таблицы,
+     * используя createGrid(),
+     * после чего обновляет отображение таблицы методом refreshTable().
      */
     public void renderTable() {
         if (arr == null) generateArr();
         createGrid();
-        refreshWidgets();
+        refreshTable();
     }
 
     /**
@@ -175,23 +179,37 @@ public class SortView {
     }
 
     /**
-     * Метод выводит актуальный вариант виджета -
-     * таблицы и кнопок.
+     * Метод выводит актуальный вариант виджета таблицы.
      * <p>
-     * Сначала очищает экран от таблицы и кнопок,
-     * используя метод clear(), а затем добавляет их снова.
+     * Сначала очищает экран от таблицы,
+     * используя метод clearTable(), а затем добавляет её снова.
      */
-    private void refreshWidgets() {
-        clear();
+    private void refreshTable() {
+        clearTable();
         RootPanel.get("tableContainer").add(grid);
-        RootPanel.get("sortButtonContainer").add(sortButton);
-        RootPanel.get("resetButtonContainer").add(resetButton);
-        sortButton.setEnabled(true);
-        resetButton.setEnabled(true);
     }
 
-    private static void clear() {
+    private void enableButtons() {
+        clearButtons();
+        sortButton.setEnabled(true);
+        resetButton.setEnabled(true);
+        RootPanel.get("sortButtonContainer").add(sortButton);
+        RootPanel.get("resetButtonContainer").add(resetButton);
+    }
+
+    private void disableButtons() {
+        clearButtons();
+        sortButton.setEnabled(false);
+        resetButton.setEnabled(false);
+        RootPanel.get("sortButtonContainer").add(sortButton);
+        RootPanel.get("resetButtonContainer").add(resetButton);
+    }
+
+    private static void clearTable() {
         RootPanel.get("tableContainer").clear();
+    }
+
+    private static void clearButtons() {
         RootPanel.get("sortButtonContainer").clear();
         RootPanel.get("resetButtonContainer").clear();
     }
