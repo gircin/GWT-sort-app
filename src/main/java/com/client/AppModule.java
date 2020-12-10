@@ -9,9 +9,8 @@ import com.google.gwt.core.client.EntryPoint;
 */
 public class AppModule implements EntryPoint {
     public void onModuleLoad() {
-
-        InputView inputView = new InputView();
-        inputView.render();
-
+        View inputView = new View();
+        inputView.initializeInputView();
+        inputView.renderInputView();
     }
 }
