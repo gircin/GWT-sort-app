@@ -6,19 +6,19 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * Данный класс инкапсулирует процесс сортировки
- * переданного массива методом QuickSort и
- * сбора данных о последовательности перемещения элементов этого массива.
+ * This class encapsulates the sorting process
+ * passed array by QuickSort method and
+ * collecting data on the sequence of movement of the elements of this array.
  * <p>
- * Данные об индексе элементов, которые перемещаются,
- * хранятся в объекте класса Pair.
- * Создаваемые объекты Pair хранятся в списке ArrayList и доступны для последующей итерации
+ * Data about the index of the elements that are moved
+ * are stored in an object of the Pair class.
+ * Created Pair instance are stored in the ArrayList and are available for subsequent iteration
  * <p>
- * Оригинальный массив из класса SortView не перезаписывается, пока не отсортируются все элементы
- * Вместо этого, объекту класса Sort передаётся оригинальный массив и с него делается копия во
- * внутренний массив, используя быстрый метод System.arraycopy().
+ * The original array from the SortView class is not overwritten until all elements are sorted
+ * Instead, the original array is passed to the Sort object and a copy is made from it in
+ * internal array using the fast System.arraycopy () method.
  * <p>
- * Сразу после инициализации объекта, переданный в него массив копируется и копия сортируется
+ * Immediately after object initialization, the array passed to it is copied and the copy is sorted
  */
 public class QuickSort {
     private final int[] arr;
@@ -31,10 +31,10 @@ public class QuickSort {
     }
 
     /**
-     * Простая реализация алгоритма QuickSort, использующая рекурсию.
-     * Исходный код скопирован с репозитория
+     * Simple implementation of the QuickSort algorithm using recursion.
+     * Source code from
      * https://github.com/eugenp/tutorials/blob/e0a581b6e1b482db3593acf7331d3468f553259d/algorithms-sorting/src/main/java/com/baeldung/algorithms/quicksort/ThreeWayQuickSort.java
-     * Эфективность примерно в 3 раза ниже, чем у кода DualPivotQuicksort.sort()
+     * Efficiency is about 3 times lower than that of the DualPivotQuicksort.sort () code
      */
     private void sort(int begin, int end) {
         if (end <= begin) return;
@@ -64,8 +64,8 @@ public class QuickSort {
     }
 
     /**
-     * Метод возвращает список объектов Pair,
-     * которые представляют из себя историю изменения массива
+     * The method returns a list of Pair objects,
+     * which are the history of array changes
      */
     public List<Pair> getPairs() {
         return pairs;
