@@ -14,9 +14,9 @@ import java.util.Iterator;
 import java.util.List;
 
 /**
- * Класс генерирует интерфейс и логику страницы сортировки
- * Страница не может быть сгенерирована с 0 (или вообще без чисел),
- * поэтому создан конструктор, который принимает значение кол-ва генерящихся кнопок
+ * The class generates the UI and logic of the sort page
+ * The page cannot be generated from 0 (or no numbers at all),
+ * therefore, a constructor has been created that takes the value of the number of generated buttons
  */
 public class SortView {
     private final int arrLength;
@@ -28,8 +28,8 @@ public class SortView {
     private boolean isSorted;
 
     /**
-     * Конструктор принимает значение числа, на основании
-     * которого будет генерироваться массив случайных чисел.
+     * The constructor takes the value of a number based on
+     * which will generate an array of random numbers.
      */
     public SortView(int value) {
         arrLength = Math.min(value, ROWS * COLUMNS);
@@ -48,11 +48,11 @@ public class SortView {
     }
 
     /**
-     * Класс-обработчик нажатия на кнопку Sort
-     * По клику должен определять, отсортирован-ли массив
+     * Sort button click handler class
+     * On click should determine if the array is sorted
      * <p>
-     * Если массив НЕ ОТСОРТИРОВАН, то сортировать его в порядке убывания
-     * Если массив ОТСОРТИРОВАН, то должен разворачивать его.
+     * If the array is NOT SORTED, then sort it in descending order
+     * If the array is SORTED, then it should expand it.
      */
     class SortHandler implements ClickHandler {
         @Override
@@ -114,15 +114,15 @@ public class SortView {
     }
 
     /**
-     * Метод проверяет, сгенерирован-ли массив и выводит виджет
-     * таблицы, в которой ячейки представлены кнопками со случайно сгенерированными числами
+     * The method checks if the array has been generated and displays the widget
+     * a table in which cells are represented by buttons with randomly generated numbers
      * <p>
-     * Если массива ещё нет, то он вызывает метод генерирования
-     * массива generateArr().
+     * If the array does not yet exist, then it calls the generation method
+     * array generateArr().
      * <p>
-     * После этого метод создаёт на основе массива виджет таблицы,
-     * используя createGrid(),
-     * после чего обновляет отображение таблицы методом refreshTable().
+     * After that, the method creates a table widget based on the array,
+     * using createGrid(),
+     * then refreshes the display of the table using the refreshTable() method.
      */
     public void renderTable() {
         if (arr == null) generateArr();
@@ -131,18 +131,18 @@ public class SortView {
     }
 
     /**
-     * Метод генерирует массив на основании внутренней
-     * переменной arrLength.
-     * Перед тем, как вызывать этот метод, нужно изменить переменную.
+     * The method generates an array based on the internal
+     * variable arrLength.
+     * Before calling this method, you need to change the variable.
      * <p>
-     * Метод генерирует числа в диапазоне от 1 до 1000 (оба включительно)
+     * The method generates numbers in the range from 1 to 1000 (both inclusive)
      * <p>
-     * В процессе генерации метод проверяет, было ли сгенерировано число < 30
-     * и соответственно меняет переменную wasThereALimitNumber.
+     * In the process of generation, the method checks if a number <30 was generated
+     * and changes the wasThereALimitNumber variable accordingly.
      * <p>
-     * Если в конце цикла генерации переменная wasThereALimitNumber будет false,
-     * то метод выбирает случайный индекс массива и генерит число от 1 до 30.
-     * Если переменная true, то дополнительные действия не выполняются.
+     * If at the end of the generation cycle the variable wasThereALimitNumber is false,
+     * then the method chooses a random array index and generates a number between 1 and 30.
+     * If the variable is true, then no additional actions are performed.
      */
     private void generateArr() {
         boolean wasThereALimitNumber = false;
@@ -162,10 +162,10 @@ public class SortView {
     }
 
     /**
-     * Данный метод из внутреннего массива генерирует таблицу кнопок
+     * This method generates a grid of buttons from an internal array
      */
     private void createGrid() {
-        int arrElem = 0; // подсчёт к-ва чисел, чтоб не выйти за предел массива
+        int arrElem = 0; // counting the number of numbers so not get ArrayIndexOutOfBoundsException
         for (int col = 0; col < COLUMNS; col++) {
             for (int row = 0; row < ROWS; row++) {
                 if (arrElem == arrLength) break;
@@ -179,10 +179,10 @@ public class SortView {
     }
 
     /**
-     * Метод выводит актуальный вариант виджета таблицы.
+     * The method displays the current version of the table widget.
      * <p>
-     * Сначала очищает экран от таблицы,
-     * используя метод clearTable(), а затем добавляет её снова.
+     * First clears the screen from the table,
+     * using the clearTable () method and then adding it again.
      */
     private void refreshTable() {
         clearTable();
