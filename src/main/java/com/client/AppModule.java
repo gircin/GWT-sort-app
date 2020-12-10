@@ -1,6 +1,5 @@
 package com.client;
 
-import com.client.view.InputView;
 import com.google.gwt.core.client.EntryPoint;
 
 /*
