@@ -6,8 +6,8 @@ import com.google.gwt.user.client.ui.Button;
 public class NumberedButton extends Button {
 
     /**
-     * Конструктор принимает число,
-     * которое устанавливается как значение и как имя кнопки.
+     * The constructor takes a number,
+     * which is set as the value and as the name of the button.
      */
     public NumberedButton(int index) {
         super("" + index);
